@@ -23,6 +23,7 @@ public class SideChecker : MonoBehaviour
 
         Debug.Log($"Player is on the {(angle < 0 ? Sides.left : Sides.right)} side of the object " +
                   $"and {(Mathf.Abs(angle) < 90 ? Sides.inFrontOf : Sides.behind)} it.");
+        Debug.Log(angle);
     }
 
     private float Theta()
@@ -49,7 +50,12 @@ public class SideChecker : MonoBehaviour
 
     private Vector3 CheckDistanceToPlayer()
     {
-        return transform.position - playerTransform.position;
+        float x, y, z;
+        x = Mathf.Abs(transform.position.x - playerTransform.position.x);
+        y = Mathf.Abs(transform.position.y - playerTransform.position.y);
+        z = Mathf.Abs(transform.position.z - playerTransform.position.z);
+
+        return new Vector3(x, y, z);
     }
 
     private Vector3 CrossVectors(Vector3 a, Vector3 b)
